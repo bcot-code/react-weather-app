@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 import "./Weather.css";
 
-export default function Weather() {
+export default function Weather(props) {
   const [weatherCondition, setweatherData] = useState({ ready: false });
   function handleResponse(response) {
     setweatherData({
       ready: true,
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
-      time: response.data.timezone,
       description: response.data.weather[0].description,
       iconUrl:
         "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAUhJREFUeNrt230NgzAQh2GkIAUJyJgMJCABCZNQKcxBHdyOpFkyEkYGV9oL75Lff2Rwz8pXe2tEpLlzGgAAAAAAAAAAYHsDg4+8Hp1m0ATNrJGNzGmbZdvOZN+lAFLRkyb+KHgvMX1H5wYgFR5OFL2VcATiMgA9uFbzzFD4Oss+2qoA9ID6k0P9yKnRVwGgBzJeWPg6Y1GAdIGSwpmKAFRS/C5CFoDCw/6v08EcIF3wpNL0WQHSrS5WDBDXt0hrgGfFxX+eE7IApCc8cZIuB0BwBBBMAZz9+l+jwApgcggwWQJEhwDRBMDp8P+cBhYAg2OAwQIgOAYIFgCzY4DZAkBcB4C7AywvcIwAAADgNsiDEI/CvAzxOsyECFNiTIoyLc7CCEtjLI6yPE6DBC0yNEnRJkejJK2yNEvTLs8fJgAAAAAAAADg1nkDlR7XfJiH1ggAAAAASUVORK5CYII=",
@@ -43,8 +43,9 @@ export default function Weather() {
           </div>
         </form>
         <ul>
-          <li>date:{weatherCondition.date}</li>
-          <li>time:{weatherCondition.time}</li>
+          <li>
+            <FormattedDate date={weatherCondition.date} />
+          </li>
           <li className="description">
             forecast: {""}
             {weatherCondition.description}
@@ -58,6 +59,7 @@ export default function Weather() {
               className="float-left"
             />
             <div className="float-end">
+              n
               <span className="temp">
                 {Math.round(weatherCondition.temperature)}
               </span>
@@ -75,8 +77,7 @@ export default function Weather() {
     );
   } else {
     let apiKey = process.env.REACT_APP_Weather_iD;
-    let city = "New York";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(url).then(handleResponse);
 
     return "The App is loading...";

@@ -22,7 +22,7 @@
   font-weight: 400;
   position: relative;
   top: -30px;
-  margin-left: 5px;
+  margin-left: 1px;
 }
 .Weather ul {
   margin: 0;
@@ -33,6 +33,9 @@
   font-weight: 100;
   line-height: 19px;
   list-style: none;
+}
+.Weather .description {
+  text-transform: capitalize;
 }
 .Weather .temp {
   font-weight: bold;

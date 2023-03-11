@@ -25,6 +25,12 @@
   top: -30px;
   margin-left: 1px;
 }
+.Weather canvas {
+  height: 50px;
+  width: 50px;
+  margin-right: 8px;
+  display: inline-block;
+}
 .Weather ul {
   margin: 0;
   padding: 0;

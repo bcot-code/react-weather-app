@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Loadingprocess from "./Loadingprocess";
 
 import WeatherInfo from "./Weatherinfo";
 import "./Weather.css";
@@ -14,7 +15,7 @@ export default function Weather(props) {
       country: response.data.sys.country,
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
-      iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
@@ -64,6 +65,6 @@ export default function Weather(props) {
     );
   } else {
     search();
-    return "The App is loading...";
+    return <Loadingprocess />;
   }
 }

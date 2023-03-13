@@ -9,15 +9,19 @@ export default function WeatherTemp(props) {
   }
   function convertToCelsius(event) {
     event.preventDefault();
-    displayUnit("celsius");
+    displayUnit("metric");
   }
 
   if (unit === "metric") {
+    let celsius = props.celsius;
     return (
       <div className="WeatherTemp">
-        <span className="temp">{Math.round(props.celsius)}</span>
+        <span className="temp">{Math.round(celsius)}</span>
         <span className="unit">
-          °C |{" "}
+          <a href="/" onClick={convertToCelsius}>
+            °C{" "}
+          </a>{" "}
+          |
           <a href="/" onClick={convertToFahrenheit}>
             °F
           </a>
@@ -33,7 +37,10 @@ export default function WeatherTemp(props) {
           <a href="/" onClick={convertToCelsius}>
             °C
           </a>{" "}
-          | °F
+          |{" "}
+          <a href="/" onClick={convertToFahrenheit}>
+            °F
+          </a>
         </span>
       </div>
     );

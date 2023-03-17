@@ -3,6 +3,7 @@ import axios from "axios";
 import Loadingprocess from "./Loadingprocess";
 
 import WeatherInfo from "./Weatherinfo";
+import WeatherFore from "./Forecast.js";
 import "./Weather.css";
 
 export default function Weather(props) {
@@ -11,6 +12,7 @@ export default function Weather(props) {
   function handleResponse(response) {
     setweatherData({
       ready: true,
+      coord: response.data.coord,
       city: response.data.name,
       country: response.data.sys.country,
       date: new Date(response.data.dt * 1000),
@@ -61,6 +63,8 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo data={weatherCondition} />
+        <hr />
+        <WeatherFore coord={weatherCondition.coord} />
       </div>
     );
   } else {

@@ -3,11 +3,11 @@ import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherForDay(props) {
   function maxTemp() {
-    let temperature = Math.round((props.data.temp.max * 9) / 5) + 32;
+    let temperature = Math.round(props.data.temp.max);
     return temperature;
   }
   function minTemp() {
-    let temper = Math.round((props.data.temp.min * 9) / 5 + 32);
+    let temper = Math.round(props.data.temp.min);
     return temper;
   }
   function day() {

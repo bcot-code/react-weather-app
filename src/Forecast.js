@@ -39,7 +39,7 @@ export default function Forecast(props) {
     let key = `e0a5a97de9a0b7a951e9d154a8f9bad8`;
     let long = props.coord.lon;
     let lat = props.coord.lat;
-    let urlAp = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}`;
+    let urlAp = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}&units=imperial`;
 
     axios.get(urlAp).then(handleResp);
     return null;
